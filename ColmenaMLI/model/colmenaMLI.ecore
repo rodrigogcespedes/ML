@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="colmenaMLI" nsURI="http://www.example.org/colmenaMLI" nsPrefix="colmenaMLI">
+  <eClassifiers xsi:type="ecore:EClass" name="InfrastructureDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contained_configurations"
+        upperBound="-1" eType="#//Configuration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contained_environments"
+        upperBound="-1" eType="#//Environment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DockerImage">
+    <eLiterals name="openjdk12alpine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Language">
+    <eLiterals name="java8"/>
+    <eLiterals name="java9" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RelationType">
+    <eLiterals name="authenticatedBy" value="1"/>
+    <eLiterals name="authorizedBy" value="2"/>
+    <eLiterals name="dependsOn" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Microservice" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="langType" eType="#//Language"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contained_relations" upperBound="-1"
+        eType="#//Relation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="artifactId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="database" eType="#//Database"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="8080"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="localhost"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InfrastructureMs" abstract="true" eSuperTypes="#//Microservice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionalMs" eSuperTypes="#//Microservice #//Diagrama">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="porpertiesSyntax" eType="#//PropertiesSyntax"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependenciesManager" eType="#//DependenciesManager"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relation" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//Microservice"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" eType="#//Microservice"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relationType" eType="#//RelationType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Authentication" eSuperTypes="#//InfrastructureMs"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Authorization" eSuperTypes="#//InfrastructureMs"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Gateway" eSuperTypes="#//InfrastructureMs">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gatewayService" eType="#//GatewayService"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigServer" eSuperTypes="#//InfrastructureMs">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="root"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="root"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Discovery" eSuperTypes="#//InfrastructureMs">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="discoveryService" eType="#//DiscoveryService"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogServer" eSuperTypes="#//InfrastructureMs"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Configuration" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="network" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="environment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="restartType" eType="#//RestartType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="microservice" upperBound="-1"
+        eType="#//Microservice" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RestartType">
+    <eLiterals name="always"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InfrastructureConfig" eSuperTypes="#//Configuration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="infrastructureMs" upperBound="-1"
+        eType="#//InfrastructureMs"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DockerConfig" eSuperTypes="#//Configuration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="innerPort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exposePort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dockerBaseImage" eType="#//DockerImage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Diagrama" eSuperTypes="../../ColmenaML/model/colmenaML.ecore#//ClassDiagram"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="DatabaseDialect">
+    <eLiterals name="MySQL"/>
+    <eLiterals name="mongoDB" value="1"/>
+    <eLiterals name="PostgreSQL" value="2"/>
+    <eLiterals name="MariaDB" value="3"/>
+    <eLiterals name="Oracle" value="4"/>
+    <eLiterals name="h2" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Database">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dialect" eType="#//DatabaseDialect"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Environment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contained_microservices"
+        upperBound="-1" eType="#//Microservice" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelRelation" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classesRelation" eType="ecore:EClass ../../ColmenaML/model/colmenaML.ecore#//Relation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InfrastructureRelation" eSuperTypes="#//Relation"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="DiscoveryService">
+    <eLiterals name="Consul"/>
+    <eLiterals name="Eureka" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GatewayService">
+    <eLiterals name="SpringCloud"/>
+    <eLiterals name="Nginx" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PropertiesSyntax">
+    <eLiterals name="yml"/>
+    <eLiterals name="properties" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DependenciesManager">
+    <eLiterals name="Maven"/>
+    <eLiterals name="Graddle" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>

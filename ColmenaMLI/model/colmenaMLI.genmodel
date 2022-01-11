@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/ColmenaMLI/src-gen" creationIcons="false" editDirectory="/ColmenaMLI.edit/src-gen"
+    editorDirectory="/ColmenaMLI.editor/src-gen" modelPluginID="ColmenaMLI" modelName="ColmenaMLI"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>colmenaMLI.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="ColmenaMLI" disposableProviderFactory="true" ecorePackage="colmenaMLI.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//DockerImage">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DockerImage/openjdk12alpine"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//Language">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//Language/java8"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//Language/java9"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//RelationType">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//RelationType/authenticatedBy"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//RelationType/authorizedBy"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//RelationType/dependsOn"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//RestartType">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//RestartType/always"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//DatabaseDialect">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DatabaseDialect/MySQL"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DatabaseDialect/mongoDB"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DatabaseDialect/PostgreSQL"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DatabaseDialect/MariaDB"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DatabaseDialect/Oracle"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DatabaseDialect/h2"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//DiscoveryService">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DiscoveryService/Consul"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DiscoveryService/Eureka"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//GatewayService">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//GatewayService/SpringCloud"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//GatewayService/Nginx"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//PropertiesSyntax">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//PropertiesSyntax/yml"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//PropertiesSyntax/properties"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="colmenaMLI.ecore#//DependenciesManager">
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DependenciesManager/Maven"/>
+      <genEnumLiterals ecoreEnumLiteral="colmenaMLI.ecore#//DependenciesManager/Graddle"/>
+    </genEnums>
+    <genClasses ecoreClass="colmenaMLI.ecore#//InfrastructureDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//InfrastructureDiagram/contained_configurations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//InfrastructureDiagram/contained_environments"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="colmenaMLI.ecore#//Microservice">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Microservice/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Microservice/langType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//Microservice/contained_relations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Microservice/artifactId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Microservice/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Microservice/groupId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Microservice/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//Microservice/database"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Microservice/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Microservice/ip"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//InfrastructureMs"/>
+    <genClasses ecoreClass="colmenaMLI.ecore#//FunctionalMs">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//FunctionalMs/porpertiesSyntax"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//FunctionalMs/dependenciesManager"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="colmenaMLI.ecore#//Relation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//Relation/destination"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//Relation/origin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Relation/relationType"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//Authentication"/>
+    <genClasses ecoreClass="colmenaMLI.ecore#//Authorization"/>
+    <genClasses ecoreClass="colmenaMLI.ecore#//Gateway">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Gateway/gatewayService"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//ConfigServer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//ConfigServer/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//ConfigServer/password"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//Discovery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Discovery/discoveryService"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//LogServer"/>
+    <genClasses image="false" ecoreClass="colmenaMLI.ecore#//Configuration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Configuration/network"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Configuration/environment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Configuration/restartType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//Configuration/microservice"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//InfrastructureConfig">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//InfrastructureConfig/infrastructureMs"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//DockerConfig">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//DockerConfig/innerPort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//DockerConfig/exposePort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//DockerConfig/dockerBaseImage"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//Diagrama"/>
+    <genClasses ecoreClass="colmenaMLI.ecore#//Database">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Database/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Database/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Database/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Database/dialect"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Database/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Database/name"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//Environment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//Environment/contained_microservices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute colmenaMLI.ecore#//Environment/name"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//ModelRelation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference colmenaMLI.ecore#//ModelRelation/classesRelation"/>
+    </genClasses>
+    <genClasses ecoreClass="colmenaMLI.ecore#//InfrastructureRelation"/>
+  </genPackages>
+  <genPackages prefix="ColmenaML" ecorePackage="../../ColmenaML/model/colmenaML.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//Language">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//Language/Java"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//Language/Python"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//Language/NET"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//Language/Node"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//DataType">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DataType/int"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DataType/float"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DataType/double"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DataType/char"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DataType/byte"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DataType/boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DataType/String"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DataType/Date"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//ReturnType">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//ReturnType/void"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//ReturnType/float"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//ReturnType/int"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//ReturnType/double"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//ReturnType/char"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//ReturnType/byte"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//ReturnType/boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//ReturnType/String"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//RelationMultiplicity">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationMultiplicity/oneToOne"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationMultiplicity/oneToMany"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationMultiplicity/manyToOne"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationMultiplicity/manyToMany"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//AccessModifiers">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//AccessModifiers/private"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//AccessModifiers/public"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//AccessModifiers/protected"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//AccessModifiers/package"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//DatabaseProvider">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DatabaseProvider/MySQL"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DatabaseProvider/MongoDB"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DatabaseProvider/Oracle"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//DatabaseProvider/DB2"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//HTTPVerbs">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//HTTPVerbs/GET"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//HTTPVerbs/POST"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//HTTPVerbs/PUT"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//HTTPVerbs/DELETE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//TransferType">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//TransferType/JSON"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//TransferType/String"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//TransferType/XML"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//RebootType">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RebootType/always"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RebootType/never"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//GraphicRepresentation">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//GraphicRepresentation/text"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//GraphicRepresentation/combo"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//GraphicRepresentation/radio"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//GraphicRepresentation/checkbox"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//GraphicRepresentation/date"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//CRUDType">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//CRUDType/simple"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//CRUDType/selectable"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//CRUDType/masterDetail"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//CRUDType/masterDetailCombo"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//CRUDType/masterComboDetail"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//CRUDType/masterComboDetailCombo"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//CRUDType/none"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../ColmenaML/model/colmenaML.ecore#//RelationType">
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationType/unidirectional"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationType/aggregation"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationType/composition"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationType/usageDependency"/>
+      <genEnumLiterals ecoreEnumLiteral="../../ColmenaML/model/colmenaML.ecore#//RelationType/creationDependency"/>
+    </genEnums>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//ClassDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//ClassDiagram/contained_contracts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//ClassDiagram/contained_packages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//ClassDiagram/contained_dtoContainers"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Contract">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Contract/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Contract/verbs_offered"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Contract/main_class"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Contract/crudMethods"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//ContractExposure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//ContractExposure/verbType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//ContractExposure/url"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//ContractExposure/contained_parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//ContractExposure/contained_returnType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//ContractExposure/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//ContractExposure/fallbackFunction"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Package/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Package/contained_classifiers"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Classifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Classifier/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Classifier/contained_operations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Classifier/contained_attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Classifier/contained_inheritances"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Class">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Class/isAbstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Class/isAssociative"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Class/isAuditable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Class/crudType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Class/contained_relations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Class/contained_implementations"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Interface"/>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Relation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Relation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Relation/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Relation/multiplicity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Relation/isFinal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Relation/isStatic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Relation/visibility"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Relation/crudType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Relation/subordinate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Relation/associative_classes_contained"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Relation/destination"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Relation/origin"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Implementation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Implementation/origin"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Implementation/destination"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Attribute/isAuditable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Attribute/pseudonym"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Attribute/graphicRepresentation"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Operation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Operation/returnType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Operation/isAbstract"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Returnable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Returnable/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Returnable/isFinal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Returnable/isStatic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//Returnable/visibility"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//Inheritance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Inheritance/origin"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//Inheritance/destination"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//DTOContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//DTOContainer/contained_dtos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//DTOContainer/name"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//DTO">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//DTO/name"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//DTOReferenceAttribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//DTOReferenceAttribute/destination"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//DTOCustomAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//DTOCustomAttribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../ColmenaML/model/colmenaML.ecore#//DTOCustomAttribute/type"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//ExposureParameters">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//ExposureParameters/dto"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//ExposureReturnType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//ExposureReturnType/dto"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//CustomDTO">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//CustomDTO/contained_custom_attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//CustomDTO/contained_reference_attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="../../ColmenaML/model/colmenaML.ecore#//ClassDTO">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../ColmenaML/model/colmenaML.ecore#//ClassDTO/reference_class"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

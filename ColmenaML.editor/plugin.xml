@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated colmenaML -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="colmenaML.presentation.ColmenaMLModelWizardID"
+            name="%_UI_ColmenaMLModelWizard_label"
+            class="colmenaML.presentation.ColmenaMLModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ColmenaMLModelFile.gif">
+         <description>%_UI_ColmenaMLModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated colmenaML -->
+      <editor
+            id="colmenaML.presentation.ColmenaMLEditorID"
+            name="%_UI_ColmenaMLEditor_label"
+            icon="icons/full/obj16/ColmenaMLModelFile.gif"
+            extensions="colmenaml"
+            class="colmenaML.presentation.ColmenaMLEditor"
+            contributorClass="colmenaML.presentation.ColmenaMLActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

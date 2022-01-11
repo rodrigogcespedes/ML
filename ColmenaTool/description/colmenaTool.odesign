@@ -1,0 +1,1474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:validation="http://www.eclipse.org/sirius/description/validation/1.1.0" name="colmenaTool" version="12.0.0.2017041100">
+  <ownedViewpoints name="Viewpoint">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="InfrastructureDiagram" domainClass="colmenaMLI::InfrastructureDiagram" enablePopupBars="true">
+      <metamodel href="file:/D:/eclipse-workspace/ColmenaMLI/model/colmenaMLI.ecore#/"/>
+      <metamodel href="file:/D:/eclipse-workspace/ColmenaML/model/colmenaML.ecore#/"/>
+      <validationSet name="Microservices">
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more functional microservices with identical name" level="ERROR" message="2 or more functional microservices with identical name" targetClass="colmenaMLI::FunctionalMs">
+          <audits auditExpression="aql:self.eContainer().eContainer().contained_environments->asSet().contained_microservices->filter(colmenaMLI::FunctionalMs)->select(microservice | microservice.name=self.name)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more authorization microservices with identical name" level="ERROR" message="2 or more authorization microservices with identical name" targetClass="colmenaMLI::Authorization">
+          <audits auditExpression="aql:self.eContainer().eContainer().contained_environments->asSet().contained_microservices->filter(colmenaMLI::Authorization)->select(microservice | microservice.name=self.name)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more authentication microservices with identical name" level="ERROR" message="2 or more authentication microservices with identical name" targetClass="colmenaMLI::Authentication">
+          <audits auditExpression="aql:self.eContainer().eContainer().contained_environments->asSet().contained_microservices->filter(colmenaMLI::Authentication)->select(microservice | microservice.name=self.name)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more environments with the same name" level="ERROR" message="2 or more environments with the same name" targetClass="colmenaMLI::Environment">
+          <audits auditExpression="aql:self.eContainer().contained_environments->select(environment | environment.name=self.name)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Microservice with name=null" level="ERROR" message="Name must be not null" targetClass="colmenaMLI::Microservice">
+          <audits auditExpression="aql:self.name&lt;>''"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Environment with name=null" level="ERROR" message="Name must be not null" targetClass="colmenaMLI::Environment">
+          <audits auditExpression="aql:self.name&lt;>''"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Database null properties" level="ERROR" message="All database properties must be set" targetClass="colmenaMLI::Database">
+          <audits auditExpression="aql:self.username&lt;>'' and self.password&lt;>'' and self.url&lt;>'' and self.port&lt;>null"/>
+        </ownedRules>
+      </validationSet>
+      <layout xsi:type="description_1:CompositeLayout" padding="10" direction="LeftToRight"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="authenticatedBy" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='FunctionalMs']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='AuthenticationMs']" targetFinderExpression="aql:self.destination" sourceFinderExpression="aql:self.origin" domainClass="colmenaMLI::InfrastructureRelation" useDomainElement="true">
+          <style>
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="9" showIcon="false" labelExpression="aql:self.relationType">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="authorizedBy" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='FunctionalMs']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='AuthorizationMs']" targetFinderExpression="aql:self.destination" sourceFinderExpression="aql:self.origin" domainClass="colmenaMLI::InfrastructureRelation" useDomainElement="true">
+          <style>
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="9" showIcon="false" labelExpression="aql:self.relationType">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="modelRelation" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='NOT%20ALLOWED']" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='FunctionalMs']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='FunctionalMs']" targetFinderExpression="aql:self.destination" sourceFinderExpression="aql:self.origin" domainClass="colmenaMLI::ModelRelation" useDomainElement="true">
+          <style lineStyle="dash" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="aql:self.classesRelation.origin.name + 'To' + self.classesRelation.destination.name">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Environment" domainClass="colmenaMLI::Environment">
+          <subNodeMappings name="FunctionalMs" detailDescriptions="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='new%20Class%20Diagram']" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='FunctionalMs']" semanticCandidatesExpression="feature:contained_microservices" doubleClickDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Navigation%20']" domainClass="colmenaMLI::FunctionalMs">
+            <borderedNodeMappings name="Database" semanticCandidatesExpression="feature:eAllContents" domainClass="colmenaMLI::Database">
+              <style xsi:type="style:WorkspaceImageDescription" labelSize="7" showIcon="false" labelExpression="feature:dialect" labelAlignment="RIGHT" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/db/DB.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </borderedNodeMappings>
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="9" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/microservicios/azul.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="AuthenticationMs" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureMicroservices']" semanticCandidatesExpression="feature:contained_microservices" domainClass="colmenaMLI::Authentication">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="9" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/microservicios/rosado.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="AuthorizationMs" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='InfrastructureMicroservices']" semanticCandidatesExpression="feature:contained_microservices" domainClass="colmenaMLI::Authorization">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="9" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/microservicios/rojo.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="LogMs" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='NOT%20ALLOWED']" semanticCandidatesExpression="feature:contained_microservices" domainClass="colmenaMLI::LogServer">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="9" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/microservicios/azul-gris.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="GatewayMs" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='NOT%20ALLOWED']" semanticCandidatesExpression="feature:contained_microservices" domainClass="colmenaMLI::Gateway">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="9" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/microservicios/violeta.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="DiscoveryMs" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='NOT%20ALLOWED']" semanticCandidatesExpression="feature:contained_microservices" domainClass="colmenaMLI::Discovery">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="9" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/microservicios/verde.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="ConfigurationMs" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='NOT%20ALLOWED']" semanticCandidatesExpression="feature:contained_microservices" domainClass="colmenaMLI::ConfigServer">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="9" showIcon="false" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/microservicios/gris.png">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Microservices">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Environment" containerMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']" iconPath="/ColmenaTool/iconos/microservicios/ambiente.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::Environment" referenceName="contained_environments">
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:instance">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::Gateway" referenceName="contained_microservices">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'gatewayService' +container.contained_microservices->filter(colmenaMLI::Gateway)->size()"/>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::Discovery" referenceName="contained_microservices">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'discoveryService' +container.contained_microservices->filter(colmenaMLI::Discovery)->size()"/>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::ConfigServer" referenceName="contained_microservices">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'configService' +container.contained_microservices->filter(colmenaMLI::ConfigServer)->size()"/>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::LogServer" referenceName="contained_microservices">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'logService' +container.contained_microservices->filter(colmenaMLI::LogServer)->size()"/>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Environment' + self.eContainer().contained_environments->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Functional" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='FunctionalMs']" iconPath="/ColmenaTool/iconos/microservicios/azul barra.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::FunctionalMs" referenceName="contained_microservices">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'functionalService' + container.contained_microservices->filter(colmenaMLI::FunctionalMs)->size()"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Authentication" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='AuthenticationMs']" iconPath="/ColmenaTool/iconos/microservicios/rosado barra.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::Authentication" referenceName="contained_microservices">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'authenticationService' + container.contained_microservices->filter(colmenaMLI::Authentication)->size()"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Authorization" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='AuthorizationMs']" iconPath="/ColmenaTool/iconos/microservicios/rojo barra.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::Authorization" referenceName="contained_microservices">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'authorizationService' + container.contained_microservices->filter(colmenaMLI::Authorization)->size()"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Database" precondition="[container.database->size()=0/]" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='FunctionalMs']/@borderedNodeMappings[name='Database']" iconPath="/ColmenaTool/iconos/db/DB-ICON.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::Database" referenceName="database">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="username" valueExpression="root"/>
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="password" valueExpression="root"/>
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="dialect" valueExpression="aql:colmenaMLI::DatabaseDialect::MySQL/]"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="FunctionalMs">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:Let" variableName="infrastructureDiagram" valueExpression="aql:self">
+                  <subModelOperations xsi:type="tool_1:For" expression="aql:infrastructureDiagram.contained_environments" iteratorName="environment">
+                    <subModelOperations xsi:type="tool_1:For" expression="aql:environment.contained_microservices" iteratorName="microservice">
+                      <subModelOperations xsi:type="tool_1:For" expression="aql:microservice.contained_relations->filter(colmenaMLI::InfrastructureRelation)" iteratorName="microserviceInfrastructureRelation">
+                        <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:microserviceInfrastructureRelation.destination=element">
+                          <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                        </subModelOperations>
+                      </subModelOperations>
+                      <subModelOperations xsi:type="tool_1:For" expression="aql:microservice.contained_relations->filter(colmenaMLI::ModelRelation)" iteratorName="microserviceModelRelation">
+                        <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:microserviceModelRelation.destination=element">
+                          <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:microserviceModelRelation.classesRelation">
+                            <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                          </subModelOperations>
+                          <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:microserviceModelRelation">
+                            <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                          </subModelOperations>
+                        </subModelOperations>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element">
+                    <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="InfrastructureMicroservices">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:Let" variableName="infrastructureDiagram" valueExpression="aql:self">
+                  <subModelOperations xsi:type="tool_1:For" expression="aql:infrastructureDiagram.contained_environments" iteratorName="environment">
+                    <subModelOperations xsi:type="tool_1:For" expression="aql:environment.contained_microservices" iteratorName="microservice">
+                      <subModelOperations xsi:type="tool_1:For" expression="aql:microservice.contained_relations->filter(colmenaMLI::InfrastructureRelation)" iteratorName="microserviceInfrastructureRelation">
+                        <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:microserviceInfrastructureRelation.destination=element">
+                          <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                        </subModelOperations>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element">
+                    <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="NOT ALLOWED">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation/>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Relations">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="authenticatedBy" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@edgeMappings[name='authenticatedBy']" iconPath="/ColmenaTool/iconos/microservicios/line.png">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::InfrastructureRelation" referenceName="contained_relations">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="relationType" valueExpression="aql:colmenaMLI::RelationType::authenticatedBy"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="authorizedBy" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@edgeMappings[name='authorizedBy']" iconPath="/ColmenaTool/iconos/microservicios/line.png">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::InfrastructureRelation" referenceName="contained_relations">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="relationType" valueExpression="aql:colmenaMLI::RelationType::authorizedBy"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="NOT ALLOWED">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation/>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Diagrams">
+          <ownedTools xsi:type="tool:DiagramCreationDescription" name="new Class Diagram" titleExpression="aql:self.name + 'Diagram'" browseExpression="aql:self.name">
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:diagramName"/>
+            </initialOperation>
+            <containerViewVariable name="containerView"/>
+            <representationNameVariable name="diagramName"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="Navigation " mappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='InfrastructureDiagram']/@defaultLayer/@containerMappings[name='Environment']/@subNodeMappings[name='FunctionalMs']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:Navigation" createIfNotExistent="true" diagramDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="ClassDiagram" titleExpression="aql:self.name + 'Diagram'" domainClass="colmenaMLI::FunctionalMs" enablePopupBars="true">
+      <validationSet>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Classifier with name = null" level="ERROR" message="Name must be not null" targetClass="colmenaML::Classifier">
+          <audits auditExpression="aql:self.name&lt;>''"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Attribute with name = null" level="ERROR" message="Name must be not null" targetClass="colmenaML::Attribute">
+          <audits auditExpression="aql:self.name&lt;>''"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Operation with name = null" level="ERROR" message="Name must be not null" targetClass="colmenaML::Operation">
+          <audits auditExpression="aql:self.name&lt;>''"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Custom DTO with name = null" level="ERROR" message="Name must be not null" targetClass="colmenaML::CustomDTO">
+          <audits auditExpression="aql:self.name&lt;>''"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Contract with name = null" level="ERROR" message="Name must be not null" targetClass="colmenaML::Contract">
+          <audits auditExpression="aql:self.name&lt;>''"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Contract Exposure with url = null" level="ERROR" message="Url must be not null" targetClass="colmenaML::ContractExposure">
+          <audits auditExpression="aql:self.url&lt;>''"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more classifiers with identical name" level="ERROR" message="2 or more classifiers with the same name" targetClass="colmenaML::Classifier">
+          <audits auditExpression="aql:self.eContainer().contained_classifiers->select(classifier | classifier.name=self.name)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more attributes with the same name in a class" level="ERROR" message="2 or more attributes with the same name" targetClass="colmenaML::Attribute">
+          <audits auditExpression="aql:self.eContainer().contained_attributes->select(attribute | attribute.name=self.name)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more operations with the same name in a class" level="ERROR" message="2 or more operations with the same name" targetClass="colmenaML::Operation">
+          <audits auditExpression="aql:self.eContainer().contained_operations->select(operation | operation.name=self.name)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more attributes with the same pseudonym" level="ERROR" message="2 or more attributes with the same pseudonym" targetClass="colmenaML::Attribute">
+          <audits auditExpression="aql:if self.pseudonym&lt;>null then self.eContainer().contained_attributes->select(attribute | attribute.pseudonym=self.pseudonym)->size()=1 else true endif "/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more custom DTOs with identical name" level="ERROR" message="2 or more custom dtos with identical name" targetClass="colmenaML::CustomDTO">
+          <audits auditExpression="aql:self.eContainer().contained_dtos->filter(colmenaML::CustomDTO)->select(dto | dto.name=self.name)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more contracts with identical name" level="ERROR" message="2 or more contracts with identical name" targetClass="colmenaML::Contract">
+          <audits auditExpression="aql:self.eContainer().contained_contracts->select(contract | contract.name = self.name) -> size() = 1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="2 or more contract exposure with identical url and method" level="ERROR" message="2 or more contract exposure with identical url and method" targetClass="colmenaML::ContractExposure">
+          <audits auditExpression="aql:self.eContainer().verbs_offered->select(exposure | exposure.url=self.url and exposure.verbType=self.verbType)->size()=1"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="Abstract class cannot be associative or auditable" level="ERROR" message="Abstract class cannot be associative or auditable" targetClass="colmenaML::Class">
+          <audits auditExpression="aql:if self.isAbstract then self.isAssociative=false and self.isAuditable=false else true endif "/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="correct DTO name" level="ERROR" message="the name must start with &quot;DTO&quot;" targetClass="colmenaML::CustomDTO">
+          <audits auditExpression="aql:self.name.substring(1,3)='DTO'"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="custom DTO name equals reference DTO name" level="ERROR" message="custom DTO has the same name as a class DTO" targetClass="colmenaML::CustomDTO">
+          <audits auditExpression="aql:self.eContainer().contained_dtos->filter(colmenaML::ClassDTO)->select(classdto | self.name = 'DTO' + classdto.reference_class.name)->size()=0"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="External Relation without external Contract" level="ERROR" message="The destination class must have a contract with crudMethods" targetClass="colmenaML::Relation">
+          <audits auditExpression="aql:if self.origin.eContainer().eContainer()!=self.destination.eContainer().eContainer() then (self.destination.eContainer().eContainer().contained_contracts->select(contract | contract.main_class=self.destination and contract.crudMethods=true)->size()>0) else true endif"/>
+        </ownedRules>
+      </validationSet>
+      <layout xsi:type="description_1:CompositeLayout"/>
+      <diagramInitialisation>
+        <firstModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:self">
+          <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Package" referenceName="contained_packages">
+            <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="entities"/>
+            <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:diagram">
+              <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::DTOContainer" referenceName="contained_dtoContainers">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="dtos"/>
+              </subModelOperations>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperations>
+      </diagramInitialisation>
+      <defaultLayer name="Default">
+        <edgeMappings name="Inheritance" semanticElements="aql:" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Interface']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Interface']" targetFinderExpression="feature:destination" sourceFinderExpression="feature:origin" domainClass="colmenaML::Inheritance" useDomainElement="true">
+          <style targetArrow="InputClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="12" showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Implementation" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Interface']" targetFinderExpression="feature:destination" sourceFinderExpression="feature:origin" domainClass="colmenaML::Implementation" useDomainElement="true">
+          <style lineStyle="dash" targetArrow="InputClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="12">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="aggregationRelation" preconditionExpression="aql:self.type = colmenaML::RelationType::aggregation" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetFinderExpression="feature:destination" sourceFinderExpression="feature:origin" domainClass="colmenaML::Relation" useDomainElement="true">
+          <style sourceArrow="Diamond" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <beginLabelStyleDescription labelSize="9" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </beginLabelStyleDescription>
+            <centerLabelStyleDescription labelSize="12" showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+            <endLabelStyleDescription labelSize="9" showIcon="false" labelExpression="aql:1 + '\n' +if self.visibility=colmenaML::AccessModifiers::private then '-' else '' endif +self.name">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </endLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="compositionRelation" preconditionExpression="aql:self.type = colmenaML::RelationType::composition" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetFinderExpression="feature:destination" sourceFinderExpression="feature:origin" domainClass="colmenaML::Relation" useDomainElement="true">
+          <style sourceArrow="FillDiamond" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <beginLabelStyleDescription labelSize="9" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </beginLabelStyleDescription>
+            <centerLabelStyleDescription labelSize="12" showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+            <endLabelStyleDescription labelSize="9" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </endLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="creationDependencyRelation" preconditionExpression="aql:self.type = colmenaML::RelationType::creationDependency" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetFinderExpression="feature:destination" sourceFinderExpression="feature:origin" domainClass="colmenaML::Relation" useDomainElement="true">
+          <style lineStyle="dash" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <beginLabelStyleDescription labelSize="12" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </beginLabelStyleDescription>
+            <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="aql:'&lt;creation>'">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+            <endLabelStyleDescription labelSize="12" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </endLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="usageDependencyRelation" preconditionExpression="aql:self.type = colmenaML::RelationType::usageDependency" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetFinderExpression="feature:destination" sourceFinderExpression="feature:origin" domainClass="colmenaML::Relation" useDomainElement="true">
+          <style lineStyle="dash" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <beginLabelStyleDescription labelSize="12" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </beginLabelStyleDescription>
+            <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="aql:'&lt;usage>'">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+            <endLabelStyleDescription labelSize="12" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </endLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="unidirectionalRelation" preconditionExpression="aql:self.type = colmenaML::RelationType::unidirectional" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Interface']" targetFinderExpression="feature:destination" sourceFinderExpression="feature:origin" domainClass="colmenaML::Relation" useDomainElement="true">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <beginLabelStyleDescription labelSize="9" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </beginLabelStyleDescription>
+            <centerLabelStyleDescription labelSize="12" showIcon="false">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+            <endLabelStyleDescription labelSize="9" showIcon="false" labelExpression="1">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </endLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="ContractRelation" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetFinderExpression="aql:self.main_class">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            <centerLabelStyleDescription labelSize="12">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="AssociativeClass" sourceMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']" targetMapping="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" targetFinderExpression="feature:associative_classes_contained">
+          <style lineStyle="dash" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription labelSize="12">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Package" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='NOT%20ALLOWED']" semanticCandidatesExpression="feature:contained_packages" domainClass="colmenaML::Package">
+          <subContainerMappings name="Class" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Class%2C%20Associated%20DTO%2C%20DTO%20Reference%20Attributes%2C%20Contract%20Exposure%20Parameters%2C%20Return%20Type%20and%20Relations']" semanticCandidatesExpression="feature:eAllContents" domainClass="colmenaML::Class" childrenPresentation="List">
+            <borderedNodeMappings name="outgoingExternalRelation" preconditionExpression="aql:self.destination.eContainer().eContainer()!=self.origin.eContainer().eContainer()" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.3/@ownedTools[name='ExternalClassRelation%20and%20MicroserviceRelation']" semanticCandidatesExpression="feature:contained_relations" domainClass="colmenaML::Relation">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql:self.destination.name + '(' + self.destination.eContainer().eContainer().name + ')'+ '\n' + self.multiplicity" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/RelacionesExternas/FlechaSaliente.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>WEST</forbiddenSides>
+                <forbiddenSides>SOUTH</forbiddenSides>
+                <forbiddenSides>EAST</forbiddenSides>
+              </style>
+            </borderedNodeMappings>
+            <borderedNodeMappings name="incomingExternalRelation" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.3/@ownedTools[name='ExternalClassRelation%20and%20MicroserviceRelation']" semanticCandidatesExpression="aql:self.eContainer().eContainer().eContainer().eContainer().contained_environments->asSet().contained_microservices->filter(colmenaMLI::FunctionalMs)->asSet().contained_packages.contained_classifiers->filter(colmenaML::Class)->asSet().contained_relations->select(relation | relation.destination=self and relation.origin.eContainer().eContainer()!=relation.destination.eContainer().eContainer())" domainClass="colmenaML::Relation">
+              <style xsi:type="style:WorkspaceImageDescription" showIcon="false" labelExpression="aql: self.origin.name + '(' + self.origin.eContainer().eContainer().name + ')' + '\n' + if self.multiplicity=colmenaML::RelationMultiplicity::manyToOne then colmenaML::RelationMultiplicity::oneToMany.toString() else (if self.multiplicity=colmenaML::RelationMultiplicity::oneToMany then colmenaML::RelationMultiplicity::manyToOne.toString() else self.multiplicity endif) endif" iconPath="/ColmenaTool/iconos/AtributoPrivate.GIF" sizeComputationExpression="-1" resizeKind="NSEW" workspacePath="/ColmenaTool/iconos/RelacionesExternas/FlechaEntrante.png">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <forbiddenSides>WEST</forbiddenSides>
+                <forbiddenSides>SOUTH</forbiddenSides>
+                <forbiddenSides>EAST</forbiddenSides>
+              </style>
+            </borderedNodeMappings>
+            <subNodeMappings name="Attribute" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Attribute%20and%20DTO%20Attribute']" semanticCandidatesExpression="feature:eAllContents" domainClass="colmenaML::Attribute">
+              <conditionnalStyles predicateExpression="aql:self.visibility=colmenaML::AccessModifiers::public">
+                <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.name + ': ' + self.type" iconPath="/ColmenaTool/iconos/AtributoPublic.GIF" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                </style>
+              </conditionnalStyles>
+              <conditionnalStyles predicateExpression="aql:self.visibility=colmenaML::AccessModifiers::private">
+                <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.name + ': ' + self.type" iconPath="/ColmenaTool/iconos/AtributoPrivate.GIF" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                </style>
+              </conditionnalStyles>
+              <conditionnalStyles predicateExpression="aql:self.visibility=colmenaML::AccessModifiers::protected">
+                <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.name + ': ' + self.type" iconPath="/ColmenaTool/iconos/AtributoProtected.GIF" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                </style>
+              </conditionnalStyles>
+              <conditionnalStyles predicateExpression="aql:self.visibility=colmenaML::AccessModifiers::package">
+                <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.name + ': ' + self.type" iconPath="/ColmenaTool/iconos/AtributoPackage.GIF" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                </style>
+              </conditionnalStyles>
+            </subNodeMappings>
+            <subNodeMappings name="Operation" semanticCandidatesExpression="feature:eAllContents" domainClass="colmenaML::Operation">
+              <conditionnalStyles predicateExpression="aql:self.visibility=colmenaML::AccessModifiers::private">
+                <style xsi:type="style:WorkspaceImageDescription" labelSize="12" showIcon="false" labelExpression="aql:self.name + ': ' + self.returnType" iconPath="/ColmenaTool/iconos/OperacionPrivate.GIF" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                </style>
+              </conditionnalStyles>
+              <conditionnalStyles predicateExpression="aql:self.visibility=colmenaML::AccessModifiers::public">
+                <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.name + ': ' + self.returnType" iconPath="/ColmenaTool/iconos/OperacionPublic.GIF" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+                  <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                  <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                </style>
+              </conditionnalStyles>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" widthComputationExpression="20" heightComputationExpression="20">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            </style>
+            <conditionnalStyles predicateExpression="aql:self.isAbstract=true">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" widthComputationExpression="20" heightComputationExpression="20">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelFormat>italic</labelFormat>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.isAssociative=true">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" widthComputationExpression="20" heightComputationExpression="20">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
+              </style>
+            </conditionnalStyles>
+          </subContainerMappings>
+          <subContainerMappings name="Interface" semanticCandidatesExpression="feature:eAllContents" domainClass="colmenaML::Interface" childrenPresentation="List">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" widthComputationExpression="20" heightComputationExpression="20">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" widthComputationExpression="-70" heightComputationExpression="-50">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="Contract" semanticCandidatesExpression="feature:contained_contracts" domainClass="colmenaML::Contract" childrenPresentation="List">
+          <subNodeMappings name="GetExposure" preconditionExpression="[self.verbType=HTTPVerbs::GET/]" semanticCandidatesExpression="aql:self.verbs_offered->select(i| i.verbType=colmenaML::HTTPVerbs::GET)" doubleClickDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.4/@ownedTools[name='ContractExposureProperties']" domainClass="colmenaML::ContractExposure">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.verbType + '  ' + self.url" iconPath="/ColmenaTool/iconos/contratos/azul.png" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="PostExposure" preconditionExpression="[self.verbType=HTTPVerbs::POST/]" semanticCandidatesExpression="aql:self.verbs_offered->select(i| i.verbType=colmenaML::HTTPVerbs::POST)" doubleClickDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.4/@ownedTools[name='ContractExposureProperties']" domainClass="colmenaML::ContractExposure">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.verbType + '  ' + self.url" iconPath="/ColmenaTool/iconos/contratos/verde.png" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="PutExposure" preconditionExpression="[self.verbType=HTTPVerbs::PUT/]" semanticCandidatesExpression="aql:self.verbs_offered->select(i| i.verbType=colmenaML::HTTPVerbs::PUT)" doubleClickDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.4/@ownedTools[name='ContractExposureProperties']" domainClass="colmenaML::ContractExposure">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.verbType + '  ' + self.url" iconPath="/ColmenaTool/iconos/contratos/amarillo.png" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="DeleteExposure" preconditionExpression="[self.verbType=HTTPVerbs::DELETE/]" semanticCandidatesExpression="aql:self.verbs_offered->select(i| i.verbType=colmenaML::HTTPVerbs::DELETE)" doubleClickDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.4/@ownedTools[name='ContractExposureProperties']" domainClass="colmenaML::ContractExposure">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="12" labelExpression="aql:self.verbType + '  ' + self.url" iconPath="/ColmenaTool/iconos/contratos/rojo.png" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <conditionnalStyles predicateExpression="aql:self.crudMethods=true">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:self.name" widthComputationExpression="20" heightComputationExpression="20" backgroundStyle="Liquid">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.crudMethods=false">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" labelExpression="aql:self.name" widthComputationExpression="20" heightComputationExpression="20" backgroundStyle="Liquid">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </style>
+          </conditionnalStyles>
+        </containerMappings>
+        <containerMappings name="DTOContainer" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='NOT%20ALLOWED']" semanticCandidatesExpression="feature:contained_dtoContainers" domainClass="colmenaML::DTOContainer" childrenPresentation="List">
+          <subNodeMappings name="CustomDTO" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='Custom%20DTO%20and%20Contract%20Exposure%20Parameters%20and%20Return%20Type']" semanticCandidatesExpression="feature:contained_dtos" doubleClickDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='CustomDTOProperties']" domainClass="colmenaML::CustomDTO">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="12" showIcon="false" labelExpression="aql:'CTM ' + self.name" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="ClassDTO" deletionDescription="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.0/@ownedTools[name='NOT%20ALLOWED']" semanticCandidatesExpression="feature:contained_dtos" domainClass="colmenaML::ClassDTO">
+            <style xsi:type="style:WorkspaceImageDescription" labelSize="12" showIcon="false" labelExpression="aql:'REF ' + 'DTO' + self.reference_class.name" labelAlignment="LEFT" sizeComputationExpression="-1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" showIcon="false" widthComputationExpression="-70" heightComputationExpression="-50">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_purple']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Entities">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Class" containerMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']" iconPath="/ColmenaTool/iconos/Clase2.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Class" referenceName="contained_classifiers" variableName="class">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Class' + container.contained_classifiers->filter(colmenaML::Class)->size()"/>
+                <subModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:container.eContainer()">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:diagram">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.contained_dtoContainers">
+                      <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ClassDTO" referenceName="contained_dtos">
+                        <subModelOperations xsi:type="tool_1:SetValue" featureName="reference_class" valueExpression="var:class"/>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Interface" containerMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Interface']" iconPath="/ColmenaTool/iconos/Interface.gif">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Interface" referenceName="contained_classifiers">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Interface' + container.contained_classifiers->filter(colmenaML::Interface)->size()"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Attribute" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']" iconPath="/ColmenaTool/iconos/Atributo.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Attribute" referenceName="contained_attributes">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Attribute' + container.contained_attributes->size()"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Operation" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Operation']" iconPath="/ColmenaTool/iconos/Operacion.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Operation" referenceName="contained_operations">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Operation' + container.contained_operations->size()"/>
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="visibility" valueExpression="aql:colmenaML::AccessModifiers::public"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" documentation="User is not allowed to delete Package and DTOContainer&#xD;&#xA;" name="NOT ALLOWED">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" documentation="If user deletes a Class the program will delete:&#xD;&#xA;&#x9;Class DTO pointing the class&#xD;&#xA;&#x9;DTO Reference Attributes in a Custom DTO pointing the class attributes&#xD;&#xA;&#x9;Contract Exposure Parameters pointing the Class DTO&#xD;&#xA;&#x9;Contract Exposure Return Type pointing the class DTO&#xD;&#xA;&#x9;Relations pointing the class" name="Class, Associated DTO, DTO Reference Attributes, Contract Exposure Parameters, Return Type and Relations">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:element.eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:For" expression="aql:diagram.contained_contracts" iteratorName="contract">
+                  <subModelOperations xsi:type="tool_1:For" expression="aql:contract.verbs_offered" iteratorName="exposure">
+                    <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:exposure.contained_returnType.dto.reference_class=element">
+                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:exposure.contained_returnType">
+                        <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                      </subModelOperations>
+                    </subModelOperations>
+                    <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:exposure.contained_parameters->select(param | param.dto.reference_class=element)->size()=1">
+                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:exposure.contained_parameters->select(param | param.dto.reference_class=element)->first()">
+                        <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool_1:For" expression="aql:diagram.eContainer().eContainer().contained_environments" iteratorName="environment">
+                  <subModelOperations xsi:type="tool_1:For" expression="aql:environment.contained_microservices->filter(colmenaMLI::FunctionalMs)" iteratorName="functionalMicroservice">
+                    <subModelOperations xsi:type="tool_1:For" expression="aql:functionalMicroservice.contained_packages.contained_classifiers->filter(colmenaML::Class)" iteratorName="class">
+                      <subModelOperations xsi:type="tool_1:For" expression="aql:class.contained_relations" iteratorName="relation">
+                        <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:relation.destination=element">
+                          <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:relation">
+                            <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                          </subModelOperations>
+                        </subModelOperations>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:diagram.contained_dtoContainers.contained_dtos->select(myDTO | myDTO.reference_class=element)->first()">
+                  <subModelOperations xsi:type="tool_1:RemoveElement">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                      <subModelOperations xsi:type="tool_1:For" expression="aql:self.contained_attributes" iteratorName="attribute">
+                        <subModelOperations xsi:type="tool_1:For" expression="aql:diagram.contained_dtoContainers.contained_dtos->filter(colmenaML::CustomDTO)" iteratorName="customDto">
+                          <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:customDto.contained_reference_attributes->select(ref | ref.destination=attribute)->size()=1">
+                            <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:customDto.contained_reference_attributes->select(ref | ref.destination=attribute)->first()">
+                              <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                            </subModelOperations>
+                          </subModelOperations>
+                        </subModelOperations>
+                      </subModelOperations>
+                      <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" documentation="If user deletes an attribute the program will delete:&#xD;&#xA;&#x9;DTO Reference Attributes pointing the selected attribute&#xD;&#xA;" name="Attribute and DTO Attribute">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.eContainer().eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:self">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:diagram.contained_dtoContainers">
+                    <subModelOperations xsi:type="tool_1:For" expression="aql:self.contained_dtos->filter(colmenaML::CustomDTO)" iteratorName="dto">
+                      <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:dto.contained_reference_attributes->select(attribute | attribute.destination=element)->size()=1">
+                        <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:dto.contained_reference_attributes->select(attribute | attribute.destination=element)->first()">
+                          <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                        </subModelOperations>
+                      </subModelOperations>
+                    </subModelOperations>
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                      <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="DTOs">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CustomDTO" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='DTOContainer']/@subNodeMappings[name='CustomDTO']" iconPath="/ColmenaTool/iconos/DTO.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::CustomDTO" referenceName="contained_dtos">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'DTO' + container.contained_dtos->size()"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="CustomDTOProperties" mappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='DTOContainer']/@subNodeMappings[name='CustomDTO']">
+            <element name="elementDTO"/>
+            <elementView name="elementDTO"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Attributes List">
+                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                  <initialOperation/>
+                </buttons>
+                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                  <initialOperation/>
+                </buttons>
+                <page name="AttributeList" domainClass="colmenaML::DTO" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='CustomDTOProperties']/@initialOperation/@firstModelOperations/@groups.0"/>
+                <groups name="AttributeGroup" labelExpression="Attributes" domainClass="colmenaML::CustomDTO" semanticCandidateExpression="var:self">
+                  <controls xsi:type="properties:ListDescription" name="ReferenceAttributes" labelExpression="Reference Attributes" valueExpression="feature:contained_reference_attributes" displayExpression="aql:value.destination.name + ': ' + value.destination.type +'  --> Class ' + value.destination.eContainer().name">
+                    <onClickOperation/>
+                  </controls>
+                  <controls xsi:type="properties:ContainerDescription" name="Reference Buttons">
+                    <controls xsi:type="properties:ButtonDescription" name="Add Reference Attribute" buttonLabelExpression="Add Reference">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:elementDTO.contained_reference_attributes->any(r | r.destination = attribute)">
+                          <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Select Class">
+                            <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                              <initialOperation/>
+                            </buttons>
+                            <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                              <initialOperation/>
+                            </buttons>
+                            <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='CustomDTOProperties']/@initialOperation/@firstModelOperations/@groups.0/@controls.1/@controls.0/@initialOperation/@firstModelOperations/@subModelOperations.0/@groups.0"/>
+                            <groups name="Default Group" labelExpression="Classes" semanticCandidateExpression="var:self">
+                              <controls xsi:type="properties:SelectDescription" name="Class Name" labelExpression="Name" valueExpression="aql:self.eContainer().eContainer().oclAsType(colmenaMLI::FunctionalMs).contained_packages.contained_classifiers->first()" candidatesExpression="aql:self.eContainer().eContainer().oclAsType(colmenaMLI::FunctionalMs).contained_packages.contained_classifiers" candidateDisplayExpression="aql:candidate.name">
+                                <initialOperation>
+                                  <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:newValue">
+                                    <subModelOperations xsi:type="tool_1:Let" variableName="selectedClass" valueExpression="aql:self">
+                                      <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Select Attributes">
+                                        <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                                          <initialOperation/>
+                                        </buttons>
+                                        <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                                          <initialOperation/>
+                                        </buttons>
+                                        <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='CustomDTOProperties']/@initialOperation/@firstModelOperations/@groups.0/@controls.1/@controls.0/@initialOperation/@firstModelOperations/@subModelOperations.0/@groups.0/@controls.0/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                                        <groups name="Default Group" labelExpression="aql:self.name" domainClass="colmenaML::Class" semanticCandidateExpression="var:self">
+                                          <controls xsi:type="properties:DynamicMappingForDescription" iterator="i" iterableExpression="aql:self.contained_attributes">
+                                            <ifs predicateExpression="aql:true">
+                                              <widget xsi:type="properties:CheckboxDescription" name="Attribute" labelExpression="aql:i.name + ': ' + i.type" valueExpression="aql:elementDTO.contained_reference_attributes->select(a | a.destination = i)->size()=1">
+                                                <initialOperation>
+                                                  <firstModelOperations xsi:type="tool_1:Let" variableName="selectedAttribute" valueExpression="aql:i">
+                                                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:newValue">
+                                                      <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self">
+                                                        <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:elementDTO">
+                                                          <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_reference_attributes->select(i | i.destination = selectedAttribute)->size()=0">
+                                                            <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::DTOReferenceAttribute" referenceName="contained_reference_attributes">
+                                                              <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="var:selectedAttribute"/>
+                                                            </subModelOperations>
+                                                          </subModelOperations>
+                                                        </subModelOperations>
+                                                      </subModelOperations>
+                                                      <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:not self">
+                                                        <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:elementDTO">
+                                                          <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_reference_attributes->select(i | i.destination = selectedAttribute)->size()=1">
+                                                            <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.contained_reference_attributes->select(i | i.destination = selectedAttribute)->first()">
+                                                              <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                                                            </subModelOperations>
+                                                          </subModelOperations>
+                                                        </subModelOperations>
+                                                      </subModelOperations>
+                                                    </subModelOperations>
+                                                  </firstModelOperations>
+                                                </initialOperation>
+                                              </widget>
+                                            </ifs>
+                                          </controls>
+                                          <controls xsi:type="properties:ButtonDescription" name="Add All" isEnabledExpression="aql:self.contained_attributes->size()>0" buttonLabelExpression="Add All">
+                                            <initialOperation>
+                                              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:selectedClass">
+                                                <subModelOperations xsi:type="tool_1:For" expression="aql:self.contained_attributes">
+                                                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:elementDTO">
+                                                    <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_reference_attributes->select(a | a.destination = i)->size()=0">
+                                                      <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::DTOReferenceAttribute" referenceName="contained_reference_attributes">
+                                                        <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="var:i"/>
+                                                      </subModelOperations>
+                                                    </subModelOperations>
+                                                  </subModelOperations>
+                                                </subModelOperations>
+                                              </firstModelOperations>
+                                            </initialOperation>
+                                          </controls>
+                                        </groups>
+                                      </subModelOperations>
+                                    </subModelOperations>
+                                  </firstModelOperations>
+                                </initialOperation>
+                              </controls>
+                            </groups>
+                          </subModelOperations>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                    <controls xsi:type="properties:ButtonDescription" name="Delete Reference Attribute" buttonLabelExpression="Delete Reference">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Delete Reference Attributes">
+                          <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                            <initialOperation/>
+                          </buttons>
+                          <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                            <initialOperation/>
+                          </buttons>
+                          <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='CustomDTOProperties']/@initialOperation/@firstModelOperations/@groups.0/@controls.1/@controls.1/@initialOperation/@firstModelOperations/@groups.0"/>
+                          <groups name="Default Group" labelExpression="Attributes" domainClass="colmenaML::CustomDTO" semanticCandidateExpression="var:self">
+                            <controls xsi:type="properties:DynamicMappingForDescription" iterator="i" iterableExpression="aql:self.contained_reference_attributes">
+                              <ifs predicateExpression="aql:true">
+                                <widget xsi:type="properties:CheckboxDescription" labelExpression="aql:i.destination.name + ': ' +i.destination.type +' --> Class ' + i.destination.eContainer().name">
+                                  <initialOperation>
+                                    <firstModelOperations xsi:type="tool_1:If" conditionExpression="aql:newValue">
+                                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:i">
+                                        <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                                      </subModelOperations>
+                                    </firstModelOperations>
+                                  </initialOperation>
+                                </widget>
+                              </ifs>
+                            </controls>
+                          </groups>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                    <layout xsi:type="properties:FillLayoutDescription" orientation="HORIZONTAL"/>
+                  </controls>
+                  <controls xsi:type="properties:ListDescription" name="CustomAttributes" labelExpression="Custom Attributes" valueExpression="feature:contained_custom_attributes" displayExpression="aql:value.name + ': ' + value.type"/>
+                  <controls xsi:type="properties:ContainerDescription" name="Custom Buttons">
+                    <controls xsi:type="properties:ButtonDescription" name="Add Custom Attribute" buttonLabelExpression="Add Custom">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:elementDTO">
+                          <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::DTOCustomAttribute" referenceName="contained_custom_attributes" variableName="newCustomAttribute">
+                            <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:newCustomAttribute">
+                              <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Custom Attribute Properties">
+                                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                                  <initialOperation/>
+                                </buttons>
+                                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                                  <initialOperation/>
+                                </buttons>
+                                <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='CustomDTOProperties']/@initialOperation/@firstModelOperations/@groups.0/@controls.3/@controls.0/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                                <groups name="Default Group" labelExpression="Properties" domainClass="colmenaML::DTOCustomAttribute" semanticCandidateExpression="var:self">
+                                  <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name">
+                                    <initialOperation>
+                                      <firstModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:newValue"/>
+                                    </initialOperation>
+                                  </controls>
+                                  <controls xsi:type="properties:SelectDescription" name="DataType" valueExpression="aql:colmenaML::DataType.getEEnumLiteral(self.type.toString())" candidatesExpression="aql:colmenaML::DataType.eLiterals" candidateDisplayExpression="aql:candidate.name">
+                                    <initialOperation>
+                                      <firstModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:newValue.instance"/>
+                                    </initialOperation>
+                                  </controls>
+                                </groups>
+                              </subModelOperations>
+                            </subModelOperations>
+                          </subModelOperations>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                    <controls xsi:type="properties:ButtonDescription" name="Delete Custom Attribute" buttonLabelExpression="Delete Custom">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Delete Custom Attributes">
+                          <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                            <initialOperation/>
+                          </buttons>
+                          <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                            <initialOperation/>
+                          </buttons>
+                          <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.1/@ownedTools[name='CustomDTOProperties']/@initialOperation/@firstModelOperations/@groups.0/@controls.3/@controls.1/@initialOperation/@firstModelOperations/@groups.0"/>
+                          <groups name="Default Group" labelExpression="Attributes" domainClass="colmenaML::DTO" semanticCandidateExpression="var:self">
+                            <controls xsi:type="properties:DynamicMappingForDescription" iterator="i" iterableExpression="aql:self.contained_custom_attributes">
+                              <ifs predicateExpression="aql:true">
+                                <widget xsi:type="properties:CheckboxDescription" labelExpression="aql:i.name + ': ' +i.type">
+                                  <initialOperation>
+                                    <firstModelOperations xsi:type="tool_1:If" conditionExpression="aql:newValue">
+                                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:i">
+                                        <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                                      </subModelOperations>
+                                    </firstModelOperations>
+                                  </initialOperation>
+                                </widget>
+                              </ifs>
+                            </controls>
+                          </groups>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                    <layout xsi:type="properties:FillLayoutDescription" orientation="HORIZONTAL"/>
+                  </controls>
+                </groups>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" documentation="If user deletes a Custom DTO the program will delete:&#xD;&#xA;&#x9;Contract Exposure Parameter pointing the DTO.&#xD;&#xA;&#x9;Contract Exposure Return Type pointing the DTO." name="Custom DTO and Contract Exposure Parameters and Return Type">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:element.eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:For" expression="aql:diagram.contained_contracts" iteratorName="contract">
+                  <subModelOperations xsi:type="tool_1:For" expression="aql:contract.verbs_offered" iteratorName="exposure">
+                    <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:exposure.contained_returnType.dto=element">
+                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:exposure.contained_returnType">
+                        <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                      </subModelOperations>
+                    </subModelOperations>
+                    <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:exposure.contained_parameters->select(param | param.dto=element)->size()=1">
+                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:exposure.contained_parameters->select(param | param.dto=element)->first()">
+                        <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element">
+                  <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Relations">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Unidirectional" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']" iconPath="/ColmenaTool/iconos/relaciones/UniDireccional.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_relations->select(relation | relation.destination=target)->size()=0">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Relation" referenceName="contained_relations">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:colmenaML::RelationType::unidirectional"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Composition" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='compositionRelation']" iconPath="/ColmenaTool/iconos/relaciones/Composicion.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_relations->select(relation | relation.destination=target)->size()=0">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Relation" referenceName="contained_relations">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:colmenaML::RelationType::composition"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Aggregation" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='aggregationRelation']" iconPath="/ColmenaTool/iconos/relaciones/Agregacion.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_relations->select(relation | relation.destination=target)->size()=0">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Relation" referenceName="contained_relations">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:colmenaML::RelationType::aggregation"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Inheritance" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='Inheritance']" iconPath="/ColmenaTool/iconos/relaciones/Herencia.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:If" conditionExpression="aql:source.eClass()=target.eClass()">
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_inheritances->select(inheritance | inheritance.destination=target)->size()=0">
+                    <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Inheritance" referenceName="contained_inheritances">
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Implementation" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='Implementation']" iconPath="/ColmenaTool/iconos/relaciones/Implementacion.gif">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_implementations->select(implementation | implementation.destination=target)->size()=0">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Implementation" referenceName="contained_implementations">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreationDependency" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='creationDependencyRelation']" iconPath="/ColmenaTool/iconos/relaciones/Usage.png">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_relations->select(relation | relation.destination=target)->size()=0">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Relation" referenceName="contained_relations">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:colmenaML::RelationType::creationDependency"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="UsageDependency" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='usageDependencyRelation']" iconPath="/ColmenaTool/iconos/relaciones/Usage.png">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_relations->select(relation | relation.destination=target)->size()=0">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Relation" referenceName="contained_relations">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:colmenaML::RelationType::usageDependency"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="AssociativeClass" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']" iconPath="/ColmenaTool/iconos/ClaseAsociativa.png">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_relations->select(relation | relation.destination=target)->size()=0">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Relation" referenceName="contained_relations" variableName="newRelation">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:source"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:target"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:colmenaML::RelationType::unidirectional"/>
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:newRelation">
+                      <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Class" referenceName="associative_classes_contained" variableName="newClass">
+                        <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:source.name + '_' + target.name"/>
+                        <subModelOperations xsi:type="tool_1:SetValue" featureName="isAssociative" valueExpression="aql:true"/>
+                        <subModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:newRelation.origin.eContainer().eContainer()">
+                          <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:diagram">
+                            <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.contained_dtoContainers">
+                              <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ClassDTO" referenceName="contained_dtos">
+                                <subModelOperations xsi:type="tool_1:SetValue" featureName="reference_class" valueExpression="var:newClass"/>
+                              </subModelOperations>
+                            </subModelOperations>
+                          </subModelOperations>
+                        </subModelOperations>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="ExternalRelations">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="ExternalClassRelation" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@borderedNodeMappings[name='outgoingExternalRelation']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container.eContainer().eContainer().eContainer().eContainer()">
+                <subModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:self">
+                  <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Select Environment">
+                    <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                      <initialOperation/>
+                    </buttons>
+                    <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                      <initialOperation/>
+                    </buttons>
+                    <page name="Environment Selection" labelExpression="Environment Selection" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.3/@ownedTools[name='ExternalClassRelation']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                    <groups name="Environments" labelExpression="Environments" semanticCandidateExpression="var:self">
+                      <controls xsi:type="properties:SelectDescription" name="Select Environments" labelExpression="Environments" valueExpression="aql:self.contained_environments->first()" candidatesExpression="aql:self.contained_environments" candidateDisplayExpression="aql:candidate.name">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:newValue">
+                            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Select Microservices">
+                              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                                <initialOperation/>
+                              </buttons>
+                              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                                <initialOperation/>
+                              </buttons>
+                              <page name="Microservice Selection" labelExpression="Microservice Selection" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.3/@ownedTools[name='ExternalClassRelation']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0/@controls.0/@initialOperation/@firstModelOperations/@subModelOperations.0/@groups.0"/>
+                              <groups name="Microservices" labelExpression="Microservices" semanticCandidateExpression="var:self">
+                                <controls xsi:type="properties:SelectDescription" name="Select Microservices" labelExpression="Microservices" valueExpression="aql:self.contained_microservices->filter(colmenaMLI::FunctionalMs)->first()" candidatesExpression="aql:self.contained_microservices->filter(colmenaMLI::FunctionalMs)" candidateDisplayExpression="aql:candidate.name">
+                                  <initialOperation>
+                                    <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:newValue">
+                                      <subModelOperations xsi:type="tool_1:Let" variableName="selectedMicroservice" valueExpression="aql:self">
+                                        <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Select Classes">
+                                          <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                                            <initialOperation/>
+                                          </buttons>
+                                          <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                                            <initialOperation/>
+                                          </buttons>
+                                          <page name="Class Selection" labelExpression="Class Selection" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.3/@ownedTools[name='ExternalClassRelation']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0/@controls.0/@initialOperation/@firstModelOperations/@subModelOperations.0/@groups.0/@controls.0/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                                          <groups name="Classes" labelExpression="Classes" semanticCandidateExpression="var:self">
+                                            <controls xsi:type="properties:SelectDescription" name="Select Classes" labelExpression="Classes" valueExpression="aql:self.contained_packages.contained_classifiers->filter(colmenaML::Class)->first()" candidatesExpression="aql:self.contained_packages.contained_classifiers->filter(colmenaML::Class)" candidateDisplayExpression="aql:candidate.name">
+                                              <initialOperation>
+                                                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:newValue">
+                                                  <subModelOperations xsi:type="tool_1:Let" variableName="selectedClass" valueExpression="aql:self">
+                                                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container">
+                                                      <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.eContainer().eContainer()!=selectedClass.eContainer().eContainer()">
+                                                        <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_relations->select(relation | relation.destination=selectedClass)->size()=0">
+                                                          <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Relation" referenceName="contained_relations" variableName="classesRelation">
+                                                            <subModelOperations xsi:type="tool_1:SetValue" featureName="type" valueExpression="aql:colmenaML::RelationType::unidirectional"/>
+                                                            <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:container"/>
+                                                            <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:selectedClass"/>
+                                                            <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container.eContainer().eContainer()">
+                                                              <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaMLI::ModelRelation" referenceName="contained_relations">
+                                                                <subModelOperations xsi:type="tool_1:SetValue" featureName="classesRelation" valueExpression="aql:classesRelation"/>
+                                                                <subModelOperations xsi:type="tool_1:SetValue" featureName="destination" valueExpression="aql:selectedMicroservice"/>
+                                                                <subModelOperations xsi:type="tool_1:SetValue" featureName="origin" valueExpression="aql:container.eContainer().eContainer().oclAsType(colmenaMLI::FunctionalMs)"/>
+                                                                <subModelOperations xsi:type="tool_1:SetValue" featureName="relationType" valueExpression="aql:colmenaMLI::RelationType::dependsOn"/>
+                                                              </subModelOperations>
+                                                            </subModelOperations>
+                                                          </subModelOperations>
+                                                        </subModelOperations>
+                                                      </subModelOperations>
+                                                    </subModelOperations>
+                                                  </subModelOperations>
+                                                </firstModelOperations>
+                                              </initialOperation>
+                                            </controls>
+                                          </groups>
+                                        </subModelOperations>
+                                      </subModelOperations>
+                                    </firstModelOperations>
+                                  </initialOperation>
+                                </controls>
+                              </groups>
+                            </subModelOperations>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                    </groups>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="ExternalClassRelation and MicroserviceRelation">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:Let" variableName="relation" valueExpression="aql:self">
+                <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.eContainer().eContainer().eContainer().eContainer().eContainer().contained_environments->asSet().contained_microservices->asSet().contained_relations->filter(colmenaMLI::ModelRelation)->select(relation | relation.classesRelation=self)->first()">
+                  <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self">
+                    <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Contracts">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Contract" containerMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']" iconPath="/ColmenaTool/iconos/Contract.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::Contract" referenceName="contained_contracts">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="Contract"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="ContractRelation" edgeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='ContractRelation']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="main_class" valueExpression="aql:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="GetExposure" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']/@subNodeMappings[name='GetExposure']" iconPath="/ColmenaTool/iconos/contratos/azul.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ContractExposure" referenceName="verbs_offered">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="verbType" valueExpression="aql:colmenaML::HTTPVerbs::GET"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PostExposure" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']/@subNodeMappings[name='PostExposure']" iconPath="/ColmenaTool/iconos/contratos/verde.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ContractExposure" referenceName="verbs_offered">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="verbType" valueExpression="aql:colmenaML::HTTPVerbs::POST"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="PutExposure" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']/@subNodeMappings[name='PutExposure']" iconPath="/ColmenaTool/iconos/contratos/amarillo.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ContractExposure" referenceName="verbs_offered">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="verbType" valueExpression="aql:colmenaML::HTTPVerbs::PUT"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="DeleteExposure" nodeMappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']/@subNodeMappings[name='DeleteExposure']" iconPath="/ColmenaTool/iconos/contratos/rojo.png">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ContractExposure" referenceName="verbs_offered">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="verbType" valueExpression="aql:colmenaML::HTTPVerbs::DELETE"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="ContractExposureProperties" mappings="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']/@subNodeMappings[name='DeleteExposure'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']/@subNodeMappings[name='GetExposure'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']/@subNodeMappings[name='PostExposure'] //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Contract']/@subNodeMappings[name='PutExposure']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Contract Exposure Properties">
+                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                  <initialOperation/>
+                </buttons>
+                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                  <initialOperation/>
+                </buttons>
+                <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.4/@ownedTools[name='ContractExposureProperties']/@initialOperation/@firstModelOperations/@groups.0"/>
+                <groups name="Default Group" labelExpression="Exposure Properties" domainClass="colmenaML::ContractExposure" semanticCandidateExpression="var:self">
+                  <controls xsi:type="properties:ListDescription" labelExpression="DTO Parameters" valueExpression="aql:self.contained_parameters" displayExpression="aql:if value.dto.eClass()=colmenaML::CustomDTO then 'Custom -> '+value.dto.name else 'Class -> ' + 'DTO'+value.dto.reference_class.name endif "/>
+                  <controls xsi:type="properties:ContainerDescription">
+                    <controls xsi:type="properties:ButtonDescription" name="Add Parameter" buttonLabelExpression="Add Parameter">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:self.eContainer().eContainer()">
+                          <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:diagram.contained_dtoContainers">
+                            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Add Parameter">
+                              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                                <initialOperation/>
+                              </buttons>
+                              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                                <initialOperation/>
+                              </buttons>
+                              <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.4/@ownedTools[name='ContractExposureProperties']/@initialOperation/@firstModelOperations/@groups.0/@controls.1/@controls.0/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                              <groups name="Default Group" labelExpression="DTOs" semanticCandidateExpression="var:self">
+                                <controls xsi:type="properties:DynamicMappingForDescription" name="Custom DTO" iterator="dto" iterableExpression="aql:self.contained_dtos->filter(colmenaML::CustomDTO)">
+                                  <ifs predicateExpression="aql:true">
+                                    <widget xsi:type="properties:CheckboxDescription" labelExpression="aql:'Custom -> ' + dto.name" valueExpression="aql:element.contained_parameters->select(param | param.dto = dto)->size()=1">
+                                      <initialOperation>
+                                        <firstModelOperations xsi:type="tool_1:If" conditionExpression="aql:newValue">
+                                          <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                                            <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_parameters->select(param | param.dto = dto)->size()=0">
+                                              <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ExposureParameters" referenceName="contained_parameters">
+                                                <subModelOperations xsi:type="tool_1:SetValue" featureName="dto" valueExpression="var:dto"/>
+                                              </subModelOperations>
+                                            </subModelOperations>
+                                          </subModelOperations>
+                                        </firstModelOperations>
+                                      </initialOperation>
+                                    </widget>
+                                  </ifs>
+                                </controls>
+                                <controls xsi:type="properties:DynamicMappingForDescription" name="Reference DTO" iterator="dto" iterableExpression="aql:self.contained_dtos->filter(colmenaML::ClassDTO)">
+                                  <ifs predicateExpression="aql:true">
+                                    <widget xsi:type="properties:CheckboxDescription" labelExpression="aql:'Class -> '+'DTO'+dto.reference_class.name" valueExpression="aql:element.contained_parameters->select(param | param.dto = dto)->size()=1">
+                                      <initialOperation>
+                                        <firstModelOperations xsi:type="tool_1:If" conditionExpression="aql:newValue">
+                                          <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                                            <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_parameters->select(param | param.dto = dto)->size()=0">
+                                              <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ExposureParameters" referenceName="contained_parameters">
+                                                <subModelOperations xsi:type="tool_1:SetValue" featureName="dto" valueExpression="var:dto"/>
+                                              </subModelOperations>
+                                            </subModelOperations>
+                                          </subModelOperations>
+                                        </firstModelOperations>
+                                      </initialOperation>
+                                    </widget>
+                                  </ifs>
+                                </controls>
+                              </groups>
+                            </subModelOperations>
+                          </subModelOperations>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                    <controls xsi:type="properties:ButtonDescription" name="Delete Parameter" buttonLabelExpression="Delete Parameter">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Delete Parameter">
+                          <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                            <initialOperation/>
+                          </buttons>
+                          <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                            <initialOperation/>
+                          </buttons>
+                          <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.4/@ownedTools[name='ContractExposureProperties']/@initialOperation/@firstModelOperations/@groups.0/@controls.1/@controls.1/@initialOperation/@firstModelOperations/@groups.0"/>
+                          <groups name="Default Group" labelExpression="Parameters" semanticCandidateExpression="var:self">
+                            <controls xsi:type="properties:DynamicMappingForDescription" iterator="param" iterableExpression="aql:self.contained_parameters">
+                              <ifs name="customDTO" predicateExpression="aql:param.dto.eClass()=colmenaML::CustomDTO">
+                                <widget xsi:type="properties:CheckboxDescription" labelExpression="aql:'Custom -> '+param.dto.name">
+                                  <initialOperation>
+                                    <firstModelOperations xsi:type="tool_1:If" conditionExpression="aql:newValue">
+                                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:param">
+                                        <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                                      </subModelOperations>
+                                    </firstModelOperations>
+                                  </initialOperation>
+                                </widget>
+                              </ifs>
+                              <ifs name="classDTO" predicateExpression="aql:param.dto.eClass()=colmenaML::ClassDTO">
+                                <widget xsi:type="properties:CheckboxDescription" labelExpression="aql:'Class -> '+'DTO'+param.dto.reference_class.name">
+                                  <initialOperation>
+                                    <firstModelOperations xsi:type="tool_1:If" conditionExpression="aql:newValue">
+                                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:param">
+                                        <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                                      </subModelOperations>
+                                    </firstModelOperations>
+                                  </initialOperation>
+                                </widget>
+                              </ifs>
+                            </controls>
+                          </groups>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                    <layout xsi:type="properties:FillLayoutDescription" orientation="HORIZONTAL"/>
+                  </controls>
+                  <controls xsi:type="properties:LabelDescription" labelExpression="Return Type" valueExpression="aql:self.contained_returnType" displayExpression="aql:if value.dto.eClass()=colmenaML::CustomDTO then 'Custom -> ' + value.dto.name else 'Class -> '+'DTO'+value.dto.reference_class.name endif "/>
+                  <controls xsi:type="properties:ButtonDescription" name="Select Return Type" buttonLabelExpression="Select Return Type">
+                    <initialOperation>
+                      <firstModelOperations xsi:type="tool_1:Let" variableName="diagram" valueExpression="aql:self.eContainer().eContainer()">
+                        <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:diagram.contained_dtoContainers">
+                          <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Select Return Type">
+                            <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                              <initialOperation/>
+                            </buttons>
+                            <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                              <initialOperation/>
+                            </buttons>
+                            <page name="Default Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@toolSections.4/@ownedTools[name='ContractExposureProperties']/@initialOperation/@firstModelOperations/@groups.0/@controls.3/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                            <groups name="Default Group" labelExpression="DTO Types" semanticCandidateExpression="var:self">
+                              <controls xsi:type="properties:SelectDescription" valueExpression="aql:element.contained_returnType.dto" candidatesExpression="aql:self.contained_dtos" candidateDisplayExpression="aql:if candidate.eClass()=colmenaML::CustomDTO then 'Custom -> ' + candidate.name else 'Class -> '+'DTO'+candidate.reference_class.name endif ">
+                                <initialOperation>
+                                  <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                                    <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_returnType->size()=0">
+                                      <subModelOperations xsi:type="tool_1:CreateInstance" typeName="colmenaML::ExposureReturnType" referenceName="contained_returnType">
+                                        <subModelOperations xsi:type="tool_1:SetValue" featureName="dto" valueExpression="aql:newValue"/>
+                                      </subModelOperations>
+                                    </subModelOperations>
+                                    <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:self.contained_returnType->size()=1">
+                                      <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.contained_returnType">
+                                        <subModelOperations xsi:type="tool_1:SetValue" featureName="dto" valueExpression="aql:newValue"/>
+                                      </subModelOperations>
+                                    </subModelOperations>
+                                  </firstModelOperations>
+                                </initialOperation>
+                              </controls>
+                            </groups>
+                          </subModelOperations>
+                        </subModelOperations>
+                      </firstModelOperations>
+                    </initialOperation>
+                  </controls>
+                </groups>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.multiplicity=colmenaML::RelationMultiplicity::oneToMany">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='compositionRelation']/@style/@endLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']/@style/@endLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='aggregationRelation']/@style/@endLabelStyleDescription" attributeName="labelExpression" value="*"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.multiplicity=colmenaML::RelationMultiplicity::manyToOne">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='compositionRelation']/@style/@beginLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']/@style/@beginLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='aggregationRelation']/@style/@beginLabelStyleDescription" attributeName="labelExpression" value="*"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.multiplicity=colmenaML::RelationMultiplicity::manyToMany">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='compositionRelation']/@style/@beginLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']/@style/@beginLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='aggregationRelation']/@style/@beginLabelStyleDescription" attributeName="labelExpression" value="*"/>
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='compositionRelation']/@style/@endLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']/@style/@endLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='aggregationRelation']/@style/@endLabelStyleDescription" attributeName="labelExpression" value="*"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.isFinal">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']/@conditionnalStyles.3/@style //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']/@conditionnalStyles.1/@style //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']/@conditionnalStyles.2/@style //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']/@conditionnalStyles.0/@style" attributeName="labelExpression" value="aql:self.name.toUpper() + ': ' + self.type"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.isStatic">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']/@conditionnalStyles.3/@style //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']/@conditionnalStyles.1/@style //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']/@conditionnalStyles.2/@style //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@containerMappings[name='Package']/@subContainerMappings[name='Class']/@subNodeMappings[name='Attribute']/@conditionnalStyles.0/@style" attributeName="labelFormat" value="aql:OrderedSet{viewpoint::FontFormat::underline}"/>
+          </vsmElementCustomizations>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="aql:self.subordinate">
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='aggregationRelation']/@style/@centerLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='compositionRelation']/@style/@centerLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']/@style/@centerLabelStyleDescription" attributeName="labelExpression" value="aql:'&lt;subordinated>'"/>
+            <featureCustomizations xsi:type="description:EAttributeCustomization" appliedOn="//@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='aggregationRelation']/@style/@centerLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='compositionRelation']/@style/@centerLabelStyleDescription //@ownedViewpoints[name='Viewpoint']/@ownedRepresentations[name='ClassDiagram']/@defaultLayer/@edgeMappings[name='unidirectionalRelation']/@style/@centerLabelStyleDescription" attributeName="labelSize" value="aql:8"/>
+          </vsmElementCustomizations>
+        </customization>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="colmenaTool.Services"/>
+  </ownedViewpoints>
+</description:Group>
